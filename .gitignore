@@ -106,3 +106,4 @@ Thumbs.db
 # other
 metastore_db
 spark-warehouse
+jdbc:h2:tcp:
