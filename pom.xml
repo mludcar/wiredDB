@@ -6,7 +6,7 @@
 
     <groupId>myTrials</groupId>
     <artifactId>wiredDB</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <name>trickyTest</name>
     <description>Assorted Test trials from openBank adventures</description>
