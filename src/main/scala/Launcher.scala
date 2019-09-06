@@ -7,14 +7,9 @@ import org.apache.logging.log4j.scala.Logging
 object Launcher extends App with Logging{
 
   try {
-    val url = "jdbc:h2:tcp://localhost/~/wiredDB"
-    val driver = "org.h2.Driver"
-    val username = "sa"
-    val password = ""
-
     H2Launcher.startDB()
     // scalastyle:off
-    Class.forName(driver)
+    Class.forName(Configuration.driver)
     val connection = DriverManager.getConnection(Configuration.url, Configuration.username, Configuration.password)
     logger.info(s"Connection Established: ${connection.getMetaData}/${connection.getCatalog}")
     val statement = connection.createStatement()
@@ -26,7 +21,7 @@ object Launcher extends App with Logging{
       logger.info(s"Schema: ${schemaName}")
     }
 
-    H2Launcher.createTable(statement)
+    // H2Launcher.createTable(statement)
 
     val rt = H2Launcher.getTables(statement)
 
@@ -36,9 +31,12 @@ object Launcher extends App with Logging{
       logger.info(s"Table: ${tableName} Schema: ${schemaName}")
     }
 
-    H2Launcher.insertData(statement)
+    val dsConnection = H2BasicDataSource.connectionPool.getConnection
+    val st = dsConnection.createStatement()
 
-    val ru = H2Launcher.getData(statement)
+    // H2Launcher.insertData(statement)
+
+    val ru = H2Launcher.getData(st)
 
     while (ru.next) {
       val id = ru.getString(1)
@@ -47,7 +45,7 @@ object Launcher extends App with Logging{
       logger.info(s"Id: ${id} Title: ${title} Author: ${author}")
     }
 
-    // connection.close()
+    connection.close()
     H2Launcher.stopDB()
   } catch {
     // scalastyle: off
