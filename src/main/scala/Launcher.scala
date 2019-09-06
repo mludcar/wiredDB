@@ -36,6 +36,17 @@ object Launcher extends App with Logging{
       logger.info(s"Table: ${tableName} Schema: ${schemaName}")
     }
 
+    H2Launcher.insertData(statement)
+
+    val ru = H2Launcher.getData(statement)
+
+    while (ru.next) {
+      val id = ru.getString(1)
+      val title = ru.getString(2)
+      val author = ru.getString(3)
+      logger.info(s"Id: ${id} Title: ${title} Author: ${author}")
+    }
+
     // connection.close()
     H2Launcher.stopDB()
   } catch {

@@ -37,7 +37,7 @@ object H2Launcher {
     * @param st receives an statement
     * @return a ResultSet
     */
-  def createTable(st: Statement): Boolean = st.execute(Querys.createTable)
+  def createTable(st: Statement): Int = st.executeUpdate(Querys.createTable)
 
   /**
     *
@@ -45,5 +45,19 @@ object H2Launcher {
     * @return a ResultSet
     */
   def getTables(st: Statement): ResultSet = st.executeQuery(Querys.showTables)
+
+  /**
+    *
+    * @param st receives an statement
+    * @return a ResultSet
+    */
+  def insertData(st: Statement): Int = st.executeUpdate(Querys.insertData)
+
+  /**
+    *
+    * @param st receives an statement
+    * @return a ResultSet
+    */
+  def getData(st: Statement): ResultSet = st.executeQuery(Querys.getData)
 
 }

@@ -11,6 +11,16 @@ object Querys {
                     "   PRIMARY KEY(id)" +
                      ");"
   val showTables = "SHOW TABLES FROM test_schema;"
+  val insertData = "INSERT INTO test_schema.test_table VALUES " +
+                   "(1, 'El Quijote', 'Miguel de Cervantes')," +
+                   "(2, 'Dune', 'Frank Herbert')," +
+                   "(3, 'El Senor de los anillos', 'JRR Tolkien')," +
+                   "(4, 'Ensayo sobre la ceguera', 'Jose Saramago')," +
+                   "(5, 'Bored To Death', 'Neil Postman')," +
+                   "(6, 'Juego de Tronos', 'George R Martin')," +
+                   "(7, 'El Capitan Alatriste', 'Arturo Perez Reverte')"
+  val getData = "SELECT * FROM test_schema.test_table"
+
 }
 
 /**
